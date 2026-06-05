@@ -84,6 +84,11 @@ Output:
 }
 ```
 
+
+### Serverless packaging note
+
+HubSpot project serverless function entrypoints are packaged independently in this deployment path, so `getAssociatedJobs.js` and `getJobNotes.js` intentionally inline their HubSpot API helper logic. Do not refactor these functions to `require('./hubspotApi')` unless HubSpot confirms sibling helper modules are bundled for this project runtime.
+
 ## Security
 
 - The React card calls HubSpot serverless functions only.

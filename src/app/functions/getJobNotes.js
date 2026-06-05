@@ -2,6 +2,9 @@ const axios = require('axios');
 
 const BASE_URL = 'https://api.hubapi.com';
 
+// HubSpot packages project serverless function entrypoints independently, so keep
+// API helper logic in this file instead of requiring a sibling helper module.
+
 function getAccessToken() {
   const accessToken = process.env.PRIVATE_APP_ACCESS_TOKEN;
 
