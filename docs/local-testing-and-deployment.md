@@ -37,7 +37,6 @@ npm install --prefix src/app/functions
 The functions depend on HubSpot runtime context for real API calls, but you can at least verify syntax from the repository root:
 
 ```bash
-node --check src/app/functions/hubspotApi.js
 node --check src/app/functions/getAssociatedJobs.js
 node --check src/app/functions/getJobNotes.js
 ```
@@ -52,11 +51,13 @@ node --check src/app/functions/getJobNotes.js
 
 2. In HubSpot, open the project component for `dos_associated_job_notes_app`.
 3. Use the Distribution tab to install the app into the target portal or a developer test account.
-4. During installation, approve these read-only scopes:
+4. During installation, approve these read-only scopes plus the required OAuth scope group:
+   - `oauth`
    - `crm.objects.contacts.read`
    - `crm.objects.deals.read`
-   - `crm.objects.notes.read`
    - `crm.objects.owners.read`
+
+   Do not add `crm.objects.notes.read`; HubSpot does not currently recognize that scope for this project app configuration. The Notes API can be read with the existing `crm.objects.contacts.read` scope according to HubSpot's Notes API scope requirements.
 
 ## Add the card to Contact records
 

@@ -26,7 +26,6 @@ src/app/functions/get-associated-jobs-hsmeta.json
 src/app/functions/getAssociatedJobs.js
 src/app/functions/get-job-notes-hsmeta.json
 src/app/functions/getJobNotes.js
-src/app/functions/hubspotApi.js
 docs/local-testing-and-deployment.md
 ```
 
@@ -85,16 +84,22 @@ Output:
 }
 ```
 
+
+### Serverless packaging note
+
+HubSpot project serverless function entrypoints are packaged independently in this deployment path, so `getAssociatedJobs.js` and `getJobNotes.js` intentionally inline their HubSpot API helper logic. Do not refactor these functions to import a sibling helper module unless HubSpot confirms sibling helper modules are bundled for this project runtime.
+
 ## Security
 
 - The React card calls HubSpot serverless functions only.
 - The frontend does **not** contain or expose private app tokens.
 - Serverless functions use HubSpot's built-in `PRIVATE_APP_ACCESS_TOKEN` for static-auth project apps.
-- The app requests read-only scopes:
+- The app requests read-only scopes plus the required OAuth scope group:
+  - `oauth`
   - `crm.objects.contacts.read`
   - `crm.objects.deals.read`
-  - `crm.objects.notes.read`
   - `crm.objects.owners.read`
+- `crm.objects.notes.read` is intentionally not requested because HubSpot does not recognize it for this project app configuration. HubSpot's Notes API documentation currently lists `crm.objects.contacts.read` or `crm.objects.contacts.write` as sufficient for notes API access, and this app already requests the read-only contact scope.
 
 ## Local testing and deployment
 
