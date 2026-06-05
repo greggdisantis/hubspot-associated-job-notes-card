@@ -1,0 +1,8 @@
+{
+  "uid": "getAssociatedJobs",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/getAssociatedJobs.js",
+    "secretKeys": []
+  }
+}

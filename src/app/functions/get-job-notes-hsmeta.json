@@ -1,0 +1,8 @@
+{
+  "uid": "getJobNotes",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/getJobNotes.js",
+    "secretKeys": []
+  }
+}

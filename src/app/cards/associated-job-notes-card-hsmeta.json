@@ -1,0 +1,11 @@
+{
+  "uid": "associated_job_notes_card",
+  "type": "card",
+  "config": {
+    "name": "Associated Job Notes",
+    "description": "View notes from Deals/Jobs associated with the current Contact record.",
+    "location": "crm.record.tab",
+    "entrypoint": "/app/cards/AssociatedJobNotesCard.jsx",
+    "objectTypes": ["CONTACT"]
+  }
+}
